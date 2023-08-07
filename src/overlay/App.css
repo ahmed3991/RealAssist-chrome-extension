@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: PoppinsMedium;
+    src: url(public/fonts/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: PoppinsRegular;
+    src: url(public/fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+    font-family: PoppinsSemiBold;
+    src: url(public/fonts/Poppins-SemiBold.ttf);
+}
+
+.extenstion-container {
+    font-family: PoppinsMedium;
+}
+
+.text-405974 {
+    color: #405974;
+}
+
+.font-regular {
+    font-family: PoppinsRegular;
+}
+
+.font-semi-bold {
+    font-family: PoppinsSemiBold;
+}
+
+.color-859BB4 {
+    color: #859BB4;
+}
+
+.setting-gear {
+    animation: gear 4s infinite linear;
+}
+
+@keyframes gear {
+    from {
+        rotate: 0deg;
+    }
+
+    to {
+        rotate: 360deg;
+    }
+}

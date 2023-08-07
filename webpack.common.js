@@ -7,18 +7,31 @@ const autoprefixer = require('autoprefixer')
 
 module.exports = {
     entry: {
-        popup: path.resolve('src/popup/index.tsx'),
-        options: path.resolve('src/options/index.tsx'),
+        // popup: path.resolve('src/popup/index.tsx'),
+        // options: path.resolve('src/options/index.tsx'),
         background: path.resolve('src/background/background.ts'),
         contentScript: path.resolve('src/contentScript/contentScript.ts'),
-        newTab: path.resolve('src/tabs/index.tsx'),
+        overlay: path.resolve('src/overlay/index.jsx'),
     },
     module: {
         rules: [
+
             {
-                use: 'ts-loader',
-                test: /\.tsx?$/,
+                test: /\.(tsx?|jsx?)$/,
                 exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: [
+                            '@babel/preset-env', // Transpile modern JS to ES5
+                            '@babel/preset-react', // Transpile React JSX syntax
+                            '@babel/preset-typescript', // Transpile TypeScript
+                        ],
+                        plugins: [
+                            '@babel/plugin-transform-runtime', // Helps with async/await, etc.
+                        ],
+                    },
+                },
             },
             {
                 test: /\.css$/i,
@@ -58,21 +71,24 @@ module.exports = {
             }]
         }),
         ...getHtmlPlugins([
-            'popup',
+            //'popup',
             'options',
-            'newTab'
+            'overlay',
         ])
     ],
     resolve: {
-        extensions: ['.tsx', '.js', '.ts']
+        extensions: ['.tsx', '.ts', '.jsx', '.js'],
     },
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, 'dist')
+        path: path.join(__dirname, 'dist'),
+        publicPath: './',
     },
     optimization: {
         splitChunks: {
-            chunks: 'all',
+            chunks(chunk) {
+                return chunk.name !== 'overlay'
+            }
         }
     }
 }
@@ -84,3 +100,4 @@ function getHtmlPlugins(chunks) {
         chunks: [chunk]
     }))
 }
+
