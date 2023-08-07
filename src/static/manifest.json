@@ -19,7 +19,7 @@
     "content_scripts": [
         {
             "matches": [
-                "https://showingguide.followupboss.com/*"
+                "<all_urls>"
             ],
             "js": [
                 "overlay.js"
