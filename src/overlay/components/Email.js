@@ -11,7 +11,14 @@ const Email = ({ toneActive, setToneActive, lengthActive, setLengthActive, onTex
 
     return (
         <div className="flex flex-col gap-3">
-            <div className="p-7 border border-slate-500 rounded-md flex flex-col gap-5">
+            <div className="flex flex-col gap-1 text-sm">
+                <p className="font-semi-bold text-white flex gap-2 items-center">
+                    <FontAwesomeIcon icon={faPencil} />
+                    Input Command
+                </p>
+                <textarea id="message" rows="4" onChange={handleTextareaChange} className="block p-2.5 w-full bg-inherit text-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Reply to the email."></textarea>
+            </div>
+            <div className="p-3 border border-slate-500 rounded-md flex flex-col gap-5">
                 <p className="font-semi-bold text-white flex gap-2 items-center text-sm">
                     <FontAwesomeIcon icon={faVolumeHigh} />
                     Choose Tone
@@ -28,7 +35,7 @@ const Email = ({ toneActive, setToneActive, lengthActive, setLengthActive, onTex
                     </button>
                 </div>
             </div>
-            <div className="p-7 border border-slate-500 rounded-md flex flex-col gap-5">
+            <div className="p-3 border border-slate-500 rounded-md flex flex-col gap-5">
                 <p className="font-semi-bold text-white flex gap-2 items-center text-sm">
                     <FontAwesomeIcon icon={faAlignJustify} />
                     Paragraph Length
@@ -44,13 +51,6 @@ const Email = ({ toneActive, setToneActive, lengthActive, setLengthActive, onTex
                         <span>Long</span>
                     </button>
                 </div>
-            </div>
-            <div className="flex flex-col gap-1 text-sm">
-                <p className="font-semi-bold text-white flex gap-2 items-center">
-                    <FontAwesomeIcon icon={faPencil} />
-                    Input Command
-                </p>
-                <textarea id="message" rows="4" onChange={handleTextareaChange} className="block p-2.5 w-full bg-inherit text-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write a thank you message for choosing our service. "></textarea>
             </div>
         </div>
     )

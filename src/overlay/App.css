@@ -6,47 +6,143 @@
     font-family: PoppinsMedium;
     src: url(public/fonts/Poppins-Medium.ttf);
 }
-
 @font-face {
     font-family: PoppinsRegular;
     src: url(public/fonts/Poppins-Regular.ttf);
 }
-
 @font-face {
     font-family: PoppinsSemiBold;
     src: url(public/fonts/Poppins-SemiBold.ttf);
 }
-
+body {
+    display: flex;
+    overflow-x: hidden;
+}
 .extenstion-container {
     font-family: PoppinsMedium;
+}
+#message {
+    resize: vertical;
+    min-height: 50px;
+    max-height: 300px;
+}
+
+.width-500 {
+    width: 500px;
+}
+.closed {
+    margin-right: -500px;
+}
+.opened {
+    margin: 0;
+}
+.side-close {
+    margin: 0;
+}
+.side-open {
+    margin-right: 500px;
 }
 
 .text-405974 {
     color: #405974;
 }
-
 .font-regular {
     font-family: PoppinsRegular;
 }
-
 .font-semi-bold {
     font-family: PoppinsSemiBold;
 }
-
 .color-859BB4 {
     color: #859BB4;
 }
-
 .setting-gear {
     animation: gear 4s infinite linear;
 }
-
 @keyframes gear {
     from {
         rotate: 0deg;
     }
-
     to {
         rotate: 360deg;
+    }
+}
+
+.cursor {
+    display: inline-block;
+    width: 1ch;
+    animation: flicker 0.5s infinite;
+    margin-bottom: 4px;
+}
+@keyframes flicker {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+}
+.types {
+    position: relative;
+}
+.types::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    width: calc(100% + 33px);
+    background: #fff;
+}
+.arrow-animation {
+    animation: arrows 1s infinite;
+}
+@keyframes arrows {
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+}
+@media (max-width: 1400px) {
+    .width-500 {
+        width: 450px;
+    }
+    .closed {
+        margin-right: -450px;
+    }
+    .types::after {
+        width: calc(100% + 20px);
+    }
+    .side-open {
+        margin-right: 450px;
+    }
+}
+@media (max-width: 1200px) {
+    .width-500 {
+        width: 400px;
+    }
+    .closed {
+        margin-right: -400px;
+    }
+    .types::after {
+        width: calc(100% + 8px);
+    }
+    .side-open {
+        margin-right: 400px;
+    }
+}
+@media (max-width: 800px) {
+    .width-500 {
+        width: 350px;
+    }
+    .closed {
+        margin-right: -350px;
+    }
+    .types::after {
+        width: 100%;
+    }
+    .side-open {
+        margin-right: 350px;
     }
 }
