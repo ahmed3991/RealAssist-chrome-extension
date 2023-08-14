@@ -25,5 +25,15 @@
                 "overlay.js"
             ]
         }
+    ],
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "logo.png"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
     ]
 }

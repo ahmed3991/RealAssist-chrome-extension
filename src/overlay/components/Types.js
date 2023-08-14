@@ -26,10 +26,10 @@ const Types = ({ typeActive, setTypeActive, toneActive, setToneActive, lengthAct
             </div>
             {
                 {
-                    'note': <Email toneActive={toneActive} setToneActive={setToneActive} lengthActive={lengthActive} setLengthActive={setLengthActive} />,
-                    'email': <Email toneActive={toneActive} setToneActive={setToneActive} lengthActive={lengthActive} setLengthActive={setLengthActive} />,
-                    'text': <Email toneActive={toneActive} setToneActive={setToneActive} lengthActive={lengthActive} setLengthActive={setLengthActive} />,
-                    'call': <Email toneActive={toneActive} setToneActive={setToneActive} lengthActive={lengthActive} setLengthActive={setLengthActive} />
+                    'note': <Email toneActive={toneActive} setToneActive={setToneActive} lengthActive={lengthActive} setLengthActive={setLengthActive} onTextareaChange={onTextareaChange} />,
+                    'email': <Email toneActive={toneActive} setToneActive={setToneActive} lengthActive={lengthActive} setLengthActive={setLengthActive} onTextareaChange={onTextareaChange} />,
+                    'text': <Email toneActive={toneActive} setToneActive={setToneActive} lengthActive={lengthActive} setLengthActive={setLengthActive} onTextareaChange={onTextareaChange} />,
+                    'call': <Email toneActive={toneActive} setToneActive={setToneActive} lengthActive={lengthActive} setLengthActive={setLengthActive} onTextareaChange={onTextareaChange} />
                 }[typeActive]
             }
         </>
