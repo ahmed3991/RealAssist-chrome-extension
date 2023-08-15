@@ -2,20 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: PoppinsMedium;
-    src: url(./public/fonts/Poppins-Medium.ttf);
-}
-@font-face {
-    font-family: PoppinsRegular;
-    src: url(./public/fonts/Poppins-Regular.ttf);
-}
-@font-face {
-    font-family: PoppinsSemiBold;
-    src: url(./public/fonts/Poppins-SemiBold.ttf);
-}
 #real_assist_ai {
     z-index: 100000;
+    font-family: 'Poppins'!important;
+}
+#real_assist_ai .border {
+    border-style: solid;
 }
 body {
     display: flex;

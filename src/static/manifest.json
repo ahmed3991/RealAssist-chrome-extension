@@ -29,7 +29,11 @@
     "web_accessible_resources": [
         {
             "resources": [
-                "logo.png"
+                "logo.png",
+                "user.png",
+                "Poppins-Medium.ttf",
+                "Poppins-Regular.ttf",
+                "Poppins-SemiBold.ttf"
             ],
             "matches": [
                 "<all_urls>"

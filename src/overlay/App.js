@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import './App.css';
 import Name from './components/Name'
@@ -30,16 +30,24 @@ const App = () => {
     function get_content(html) {
         return html.replace(/<[^>]*>/g, "");
     }
-
-    window.onload = () => {
-
-        const logo = chrome.runtime.getURL('logo.png')
-
-        setLogoSrc(logo)
-
+    useEffect(() => {
+        const fonts = document.createElement('style');
+        fonts.type = 'text/css';
+        fonts.textContent = '@font-face { font-family: PoppinsRegular; src: url("'
+            + chrome.runtime.getURL('Poppins-Regular.ttf')
+            + '"); }@font-face { font-family: PoppinsMedium; src: url("'
+            + chrome.runtime.getURL('Poppins-Medium.ttf')
+            + '"); }@font-face { font-family: PoppinsSemiBold; src: url("'
+            + chrome.runtime.getURL('Poppins-SemiBold.ttf')
+            + '"); }';
+        document.head.appendChild(fonts);
+    }, [])
+    useEffect(() => {
         const imgElement = document.querySelector('img[src^="https://s.followupboss.com"]');
-        const customer_name = document.querySelector('[data-fub-id="PersonDetailsEditLink-names"]').innerHTML;
-
+        if (document.querySelector('[data-fub-id="PersonDetailsEditLink-names"]')) {
+            const customer_name = document.querySelector('[data-fub-id="PersonDetailsEditLink-names"]').innerHTML;
+            setCustomerName(get_content(customer_name))
+        }
         if (imgElement) {
 
             const src = imgElement.getAttribute('src');
@@ -49,7 +57,15 @@ const App = () => {
         } else {
             console.log("No matching img element found.");
         }
-        setCustomerName(get_content(customer_name))
+        const logo = chrome.runtime.getURL('logo.png');
+        const user = chrome.runtime.getURL('user.png');
+        setLogoSrc(logo);
+        setImgSrc(user);
+    })
+
+    window.onload = () => {
+
+
 
     }
 
@@ -179,7 +195,7 @@ const App = () => {
             }
             <div className={`w-5 sticky top-0 right-0 bg-slate-800 h-screen cursor-pointer duration-700 ${close ? "side-close" : "side-open"}`} onClick={() => setClose(false)}></div>
             <div className="fixed top-0 right-0">
-                <div className={`extenstion-container duration-700 flex flex-col justify-between gap-3 right-0 bg-slate-800 h-screen width-500 p-5 pl-0 ${close ? "closed" : "opened"}`}>
+                <div className={`extenstion-container duration-700 flex flex-col justify-between gap-3 right-0 bg-slate-800 h-screen width-500 p-5 pl-0 ${close ? "closed" : "opened"}`} >
                     <Name logoSrc={logoSrc} />
                     <User setClose={setClose} imgSrc={imgSrc} customerName={customerName} />
                     <Types typeActive={typeActive} setTypeActive={setTypeActive} toneActive={toneActive} setToneActive={setToneActive} lengthActive={lengthActive} setLengthActive={setLengthActive} onTextareaChange={handleTextareaChange} />
