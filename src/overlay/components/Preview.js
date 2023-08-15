@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import ClipLoader from "react-spinners/ClipLoader";
 import React from 'react';
 
-const Preview = ({ preview, previewText, stringResponse, setStringResponse }) => {
+const Preview = ({ preview, previewText, stringResponse, setStringResponse, regenerate, setRegenerate, handleRegenerate }) => {
     const draft = useRef(null);
     const draftContainer = useRef(null);
     useEffect(() => {
@@ -24,16 +24,16 @@ const Preview = ({ preview, previewText, stringResponse, setStringResponse }) =>
             confirmButtonColor: '#1d4ed8'
         })
     }
-    const [regenerate, setRegenerate] = useState(false);
-    const handleRegenerate = () => {
-        setRegenerate(true);
-        // some api calls
-        setTimeout(() => {
-            // as callback function
-            setStringResponse("Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.")
-            setRegenerate(false)
-        }, 2000);
-    }
+    // const [regenerate, setRegenerate] = useState(false);
+    // const handleRegenerate = () => {
+    //     setRegenerate(true);
+    //     // some api calls
+    //     setTimeout(() => {
+    //         // as callback function
+    //         setStringResponse("Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.")
+    //         setRegenerate(false)
+    //     }, 2000);
+    // }
     const [completedTyping, setCompletedTyping] = useState(false);
     const [displayResponse, setDisplayResponse] = useState("");
     useEffect(() => {
