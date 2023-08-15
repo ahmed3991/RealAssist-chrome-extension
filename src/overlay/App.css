@@ -9,9 +9,13 @@
 #real_assist_ai .border {
     border-style: solid;
 }
+img {
+    display: inline-block;
+}
 body {
     display: flex;
     overflow-x: hidden;
+    height: auto!important;
 }
 #real_assist_ai .extenstion-container {
     font-family: PoppinsMedium;

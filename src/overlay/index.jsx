@@ -17,6 +17,22 @@ while (document.body.children.length) {
         bodyContainer.appendChild(document.body.children[i]);
     }
 }
+const styles = document.createElement('div');
+i = 0;
+while (document.head.children.length) {
+    if (i >= document.head.children.length) {
+        break;
+    }
+    if (document.head.children[i].tagName.toUpperCase() == "STYLE") {
+        styles.appendChild(document.head.children[i]);
+    } else {
+        i++;
+    }
+}
+for (let i = styles.children.length - 1; i >= 0; i--) {
+    console.log(styles.children[i]);
+    document.head.prepend(styles.children[i]);
+}
 const dir = document.documentElement.dir || document.body.dir;
 if (dir == "rtl") {
     appContainer.dir = "ltr";
