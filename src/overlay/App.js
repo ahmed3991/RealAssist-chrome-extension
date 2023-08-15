@@ -8,6 +8,9 @@ import Types from './components/Types';
 import Generate from './components/Generate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+/**
+ * body
+ */
 
 const App = () => {
     const [close, setClose] = useState(true);
@@ -89,7 +92,7 @@ const App = () => {
                 )
             }
             <div className={`w-5 sticky top-0 right-0 bg-slate-800 h-screen cursor-pointer duration-700 ${close ? "side-close" : "side-open"}`} onClick={() => setClose(false)}></div>
-            <div className="absolute top-0 right-0">
+            <div className="fixed top-0 right-0">
                 <div className={`extenstion-container duration-700 flex flex-col justify-between gap-3 right-0 bg-slate-800 h-screen width-500 p-5 pl-0 ${close ? "closed" : "opened"}`}>
                     <Name />
                     <User setClose={setClose} />

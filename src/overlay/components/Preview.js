@@ -7,6 +7,13 @@ import React from 'react';
 
 const Preview = ({ preview, previewText, stringResponse, setStringResponse }) => {
     const draft = useRef(null);
+    const draftContainer = useRef(null);
+    useEffect(() => {
+        if (draftContainer.current) {
+            draftContainer.current.style.maxHeight = draftContainer.current.clientHeight + "px";
+        }
+    }, [draftContainer.current])
+
     const copy = () => {
         navigator.clipboard.writeText(draft.current.innerText);
         Swal.fire({
@@ -23,7 +30,7 @@ const Preview = ({ preview, previewText, stringResponse, setStringResponse }) =>
         // some api calls
         setTimeout(() => {
             // as callback function
-            setStringResponse("Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.")
+            setStringResponse("Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.Thank you for choosing our real estate agency! It was a pleasure assisting you in finding your dream home. Your trust means the world to us, and we're here for any future needs.")
             setRegenerate(false)
         }, 2000);
     }
@@ -49,7 +56,7 @@ const Preview = ({ preview, previewText, stringResponse, setStringResponse }) =>
     }, [stringResponse]);
     return preview ? (
         <div className="flex flex-col gap-5 h-full">
-            <div className="p-5 border border-slate-500 rounded-md h-full">
+            <div ref={draftContainer} className="p-5 border border-slate-500 rounded-md h-full overflow-auto">
                 <p className="text-white text-regular text-sm" ref={draft}>
                     <span>
                         {displayResponse}
