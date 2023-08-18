@@ -4,7 +4,9 @@ import App from './App';
 
 const appContainer = document.createElement('div');
 appContainer.id = "real_assist_ai";
+appContainer.style.background = "rgb(30 41 59 / 1)"
 const bodyContainer = document.createElement('div');
+bodyContainer.id = "body_container"
 bodyContainer.style.width = "100%";
 let i = 0;
 while (document.body.children.length) {
@@ -17,22 +19,22 @@ while (document.body.children.length) {
         bodyContainer.appendChild(document.body.children[i]);
     }
 }
-const styles = document.createElement('div');
-i = 0;
-while (document.head.children.length) {
-    if (i >= document.head.children.length) {
-        break;
-    }
-    if (document.head.children[i].tagName.toUpperCase() == "STYLE") {
-        styles.appendChild(document.head.children[i]);
-    } else {
-        i++;
-    }
-}
-for (let i = styles.children.length - 1; i >= 0; i--) {
-    console.log(styles.children[i]);
-    document.head.prepend(styles.children[i]);
-}
+// const styles = document.createElement('div');
+// i = 0;
+// while (document.head.children.length) {
+//     if (i >= document.head.children.length) {
+//         break;
+//     }
+//     if (document.head.children[i].tagName.toUpperCase() == "STYLE") {
+//         styles.appendChild(document.head.children[i]);
+//     } else {
+//         i++;
+//     }
+// }
+// for (let i = styles.children.length - 1; i >= 0; i--) {
+//     console.log(styles.children[i]);
+//     document.head.prepend(styles.children[i]);
+// }
 const dir = document.documentElement.dir || document.body.dir;
 if (dir == "rtl") {
     appContainer.dir = "ltr";

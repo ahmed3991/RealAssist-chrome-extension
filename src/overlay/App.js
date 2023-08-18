@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import React from 'react';
 import './App.css';
 import Name from './components/Name'
@@ -26,6 +26,42 @@ const App = () => {
     const [generate, setGenerate] = useState(false);
     const [previewText, setPreviewText] = useState("");
     const [task, setTask] = useState('');
+    const slider = useRef(null);
+    const menu = useRef(null);
+    const [window, setWindow] = useState(0.25);
+    useEffect(() => {
+        if (document.body.clientWidth <= 1600) {
+            setWindow(0.3)
+        } else if (document.body.clientWidth <= 1300) {
+            setWindow(0.4)
+        }
+    }, [])
+    console.log(window);
+    function convertRemToPixels(rem) {
+        return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    }
+    useEffect(() => {
+        if (close) {
+            document.getElementById("body_container").style.width = "100%";
+            menu.current.style.right = `-${document.body.clientWidth * window - convertRemToPixels(1.25)}px`;
+            slider.current.style.right = "0";
+            document.getElementById("real_assist_ai").style.width = "auto";
+        } else {
+            console.log(slider.current.clientWidth);
+            document.getElementById("body_container").style.width = `${document.body.clientWidth - window * document.body.clientWidth}px`;
+            // menu.current.style.right = `${document.body.clientWidth * window - slider.current.clientWidth}px`;
+            menu.current.style.right = `0`
+            slider.current.style.right = "-10px";
+            document.getElementById("real_assist_ai").style.width = `${window * document.body.clientWidth}px`;
+        }
+    }, [close])
+    useEffect(() => {
+        if (slider && menu) {
+            menu.current.style.right = `-${document.body.clientWidth * window - convertRemToPixels(1.25)}px`
+            menu.current.style.width = `${document.body.clientWidth * window - convertRemToPixels(1.25)}px`
+        }
+    }, [slider, menu])
+
 
     function get_content(html) {
         return html.replace(/<[^>]*>/g, "");
@@ -62,15 +98,6 @@ const App = () => {
         setLogoSrc(logo);
         setImgSrc(user);
     })
-
-    window.onload = () => {
-
-
-
-    }
-
-
-
     const handleTextareaChange = (value) => {
         setTask(value);
     };
@@ -193,9 +220,9 @@ const App = () => {
                     </>
                 )
             }
-            <div className={`w-5 sticky top-0 right-0 bg-slate-800 h-screen cursor-pointer duration-700 ${close ? "side-close" : "side-open"}`} onClick={() => setClose(false)}></div>
-            <div className="fixed top-0 right-0">
-                <div className={`extenstion-container duration-700 flex flex-col justify-between gap-3 right-0 bg-slate-800 h-screen width-500 p-5 pl-0 ${close ? "closed" : "opened"}`} >
+            <div ref={slider} className={`w-5 sticky top-0 right-0 bg-slate-800 h-screen cursor-pointer duration-700`} onClick={() => setClose(false)}></div>
+            <div ref={menu} className="fixed top-0 right-0 duration-700" style={{ right: "-100%" }}>
+                <div className={`extenstion-container duration-700 flex flex-col justify-between gap-3 right-0 bg-slate-800 h-screen w-full p-5 pl-0 ${close ? "closed" : "opened"}`} >
                     <Name logoSrc={logoSrc} />
                     <User setClose={setClose} imgSrc={imgSrc} customerName={customerName} />
                     <Types typeActive={typeActive} setTypeActive={setTypeActive} toneActive={toneActive} setToneActive={setToneActive} lengthActive={lengthActive} setLengthActive={setLengthActive} onTextareaChange={handleTextareaChange} />
