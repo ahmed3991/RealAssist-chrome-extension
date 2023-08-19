@@ -28,37 +28,50 @@ const App = () => {
     const [task, setTask] = useState('');
     const slider = useRef(null);
     const menu = useRef(null);
-    const [window, setWindow] = useState(0.25);
-    useEffect(() => {
-        if (document.body.clientWidth <= 1600) {
-            setWindow(0.3)
-        } else if (document.body.clientWidth <= 1300) {
-            setWindow(0.4)
+    function getCurrentDimension() {
+        const width = window.innerWidth;
+        console.log(width);
+        if (width <= 1200) {
+            return .4;
+        } else if (width <= 1400) {
+            return .3;
+        } else {
+            return .25
         }
-    }, [])
-    console.log(window);
+    }
+    const [windowWidth, setWindowWidth] = useState(getCurrentDimension());
     function convertRemToPixels(rem) {
         return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
     }
     useEffect(() => {
+        const updateDimension = () => {
+            setWindowWidth(getCurrentDimension())
+        }
+        window.addEventListener('resize', updateDimension);
+
+        return (() => {
+            window.removeEventListener('resize', updateDimension);
+        })
+    }, [windowWidth])
+    console.log(windowWidth);
+    useEffect(() => {
         if (close) {
             document.getElementById("body_container").style.width = "100%";
-            menu.current.style.right = `-${document.body.clientWidth * window - convertRemToPixels(1.25)}px`;
+            menu.current.style.right = `-${document.body.clientWidth * windowWidth - convertRemToPixels(1.25)}px`;
             slider.current.style.right = "0";
             document.getElementById("real_assist_ai").style.width = "auto";
         } else {
-            console.log(slider.current.clientWidth);
-            document.getElementById("body_container").style.width = `${document.body.clientWidth - window * document.body.clientWidth}px`;
-            // menu.current.style.right = `${document.body.clientWidth * window - slider.current.clientWidth}px`;
+            document.getElementById("body_container").style.width = `${document.body.clientWidth - windowWidth * document.body.clientWidth}px`;
+            // menu.current.style.right = `${document.body.clientWidth * windowWidth - slider.current.clientWidth}px`;
             menu.current.style.right = `0`
             slider.current.style.right = "-10px";
-            document.getElementById("real_assist_ai").style.width = `${window * document.body.clientWidth}px`;
+            document.getElementById("real_assist_ai").style.width = `${windowWidth * document.body.clientWidth}px`;
         }
     }, [close])
     useEffect(() => {
         if (slider && menu) {
-            menu.current.style.right = `-${document.body.clientWidth * window - convertRemToPixels(1.25)}px`
-            menu.current.style.width = `${document.body.clientWidth * window - convertRemToPixels(1.25)}px`
+            menu.current.style.right = `-${document.body.clientWidth * windowWidth - convertRemToPixels(1.25)}px`
+            menu.current.style.width = `${document.body.clientWidth * windowWidth - convertRemToPixels(1.25)}px`
         }
     }, [slider, menu])
 
